@@ -9,11 +9,9 @@ The other files can be ignored.
 
 The script does the following:
 
-1 - Read the Features and find out each collums have observations with mean and standart deviation
-      1.1 - I extracted the respective id's and name of the collums
+1 - Read the Features and find out each collums have observations with mean and standart deviation (I extracted the respective id's and name of the collums)
       
-2 - Read the test set and select the appropriate observations from the previous steps. (It involved reading the files subject_test.txt, y_test.txt, X_test.txt and merging them)
-      2.1 - Do the same thing with the trainning set
+2 - Read the test set and select the appropriate observations from the previous steps. (It involved reading the files subject_test.txt, y_test.txt, X_test.txt and merging them) - (Do the same thing with the trainning set)
       
 3 - Using descriptive names for the activities in the data set
 
