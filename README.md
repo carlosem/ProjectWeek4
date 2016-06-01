@@ -15,7 +15,7 @@ The script does the following:
       
 3 - Using descriptive names for the activities in the data set.
 
-4 - Merging the datas.
+4 - Merging the data sets.
 
 5 - Creating a new tidy data set with the average of each variable for each activity and each subject.
 
