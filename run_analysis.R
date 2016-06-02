@@ -1,10 +1,15 @@
 
+
+#### IMPORTANT !!!! ####
+## I performed the analysis following a different order from the one on the instructions
+## of the exercise because I think it has a better flow for the programming and it is more intuitive
+
 # Reading the Features and finding out which collums has measurements
 # only for mean and standart deviation.
 
 features <- read.table(file = "UCI HAR Dataset/features.txt", header = FALSE)
 
-is_mean_std <- grepl("mean|std", features[,2])
+is_mean_std <- grepl("(.*)mean[(](.*)|(.*)std[(](.*)", features[,2])
 features_mean_std <- features[is_mean_std,]
 id_mean_std <- features_mean_std[,1]
 names_mean_std <- as.character(features_mean_std[,2])
@@ -14,7 +19,7 @@ names_mean_std <- as.character(features_mean_std[,2])
 person_test <- read.table(file = "UCI HAR Dataset/test/subject_test.txt", header = FALSE)
 activity_test <- read.table(file = "UCI HAR Dataset/test/y_test.txt", header = FALSE)
 measures_test <- read.table(file = "UCI HAR Dataset/test/X_test.txt", header = FALSE)
-measures_test <- measures_test[,id_mean_std]
+measures_test <- measures_test[,id_mean_std] # Choose only the id's of the measures I want                                  
 
 test <- cbind(person_test, activity_test, measures_test)
 colnames(test) <- c("person", "activity", names_mean_std)
@@ -56,6 +61,13 @@ training$activity[training$activity == "6"] <- "LAYING"
 # test_training <- merge(x = training, y = test, by.x = c("person", "activity"), by.y = c("person", "activity"), all.x = TRUE)
 
 training_test <- rbind(training, test)
+
+# Creating a new tidy data set
+
+install.packages("dplyr")
+library(dplyr)
+tidy_data <- summarise_each(group_by(training_test, person, activity), funs(mean))
+write.table(tidy_data, file = "tidy_data.txt", row.names = FALSE)
 
 
 
